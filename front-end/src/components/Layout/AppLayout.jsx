@@ -1,11 +1,10 @@
+import SideBar from "./SideBar";
+
 export default function AppLayout({ children }) {
     return (
         <div className="flex">
-            <aside>Side</aside>
-            <div>
-                <header> This is the header</header>
-                <main>{children}</main>
-            </div>
+            <SideBar />
+            <main>{children}</main>
         </div>
     );
 }
