@@ -51,7 +51,7 @@ export default function LoginPage() {
                 <div className="flex border mb-6 border-[#6B6560] rounded-md overflow-hidden">
                     <Link
                         to="/login"
-                        className="bg-[#252839] text-white flex-1 p-2.5 text-center text-[14px] cursor-pointer"
+                        className="bg-[#252839] text-white border-r border-[#6B6560] flex-1 p-2.5 text-center text-[14px] cursor-pointer"
                     >
                         Log in
                     </Link>
