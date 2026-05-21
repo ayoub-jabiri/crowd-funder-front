@@ -6,7 +6,7 @@ import RegisterPage from "../pages/RegisterPage";
 
 export const router = createBrowserRouter([
     {
-        path: "/",
+        path: "/dashboard",
         element: (
             <AppLayout>
                 <DashboradPage />

@@ -21,6 +21,8 @@ export default function LoginPage() {
     async function handleSubmit(e) {
         e.preventDefault();
 
+        console.log(`${VITE_API_URL}/users/login`);
+
         try {
             const response = await axios.post(
                 `${VITE_API_URL}/users/login`,
@@ -30,6 +32,8 @@ export default function LoginPage() {
             localStorage.setItem("accessToken", response.data.accessToken);
             navigate("/dashboard", { replace: true });
         } catch (error) {
+            console.log(error.response);
+
             console.log(
                 `Status: ${error.response.status}, error: ${error.response.data.message}`
             );
@@ -101,7 +105,7 @@ export default function LoginPage() {
                         />
                     </div>
                     {errorMessage && (
-                        <p className="text-red-500">*{errorMessage}</p>
+                        <p className="text-[#F44336]">*{errorMessage}</p>
                     )}
                     <button
                         type="submit"

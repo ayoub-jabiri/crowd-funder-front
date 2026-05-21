@@ -9,7 +9,6 @@ export default function LoginPage() {
         name: "",
         email: "",
         password: "",
-        passwordConfirm: "",
         role: "owner",
     });
     const [errorMessage, setErrorMessage] = useState(null);
@@ -79,14 +78,14 @@ export default function LoginPage() {
                             htmlFor="name"
                             className="block mb-2.5 text-[#6B6560] text-sm font-medium text-heading"
                         >
-                            Email Address
+                            Name
                         </label>
                         <input
                             type="name"
                             id="name"
                             name="name"
                             className="bg-neutral-secondary-medium border border-[#6B6560] text-heading text-sm rounded-md focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                            placeholder="john.doe@company.com"
+                            placeholder="name"
                             required
                             value={formData.name}
                             onChange={handleChange}
@@ -128,26 +127,8 @@ export default function LoginPage() {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="mb-2">
-                        <label
-                            htmlFor="password-confirm"
-                            className="block mb-2.5 text-[#6B6560] text-sm font-medium text-heading"
-                        >
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password-confirm"
-                            name="passwordConfirm"
-                            className="bg-neutral-secondary-medium border border-[#6B6560] text-heading text-sm rounded-md focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                            placeholder="password"
-                            required
-                            value={formData.passwordConfirm}
-                            onChange={handleChange}
-                        />
-                    </div>
                     {errorMessage && (
-                        <p className="text-red-500">*{errorMessage}</p>
+                        <p className="text-[#F44336]">*{errorMessage}</p>
                     )}
                     <button
                         type="submit"
