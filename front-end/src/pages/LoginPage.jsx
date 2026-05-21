@@ -1,12 +1,22 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { userLogin } from "../features/auth/authSilce";
 import { Link, useNavigate } from "react-router";
 
 export default function LoginPage() {
     const { VITE_API_URL } = import.meta.env;
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [errorMessage, setErrorMessage] = useState(null);
+
+    const token = useSelector((state) => state.userAuth.token);
+
+    useEffect(() => {
+        if (token) navigate("/dashboard", { replace: true });
+    }, []);
 
     function handleChange(e) {
         const { name, value } = e.target;
@@ -27,7 +37,8 @@ export default function LoginPage() {
                 formData
             );
 
-            localStorage.setItem("accessToken", response.data.accessToken);
+            dispatch(userLogin({ token: response.data.accessToken }));
+
             navigate("/dashboard", { replace: true });
         } catch (error) {
             console.log(
