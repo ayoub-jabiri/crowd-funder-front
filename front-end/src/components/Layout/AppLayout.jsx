@@ -15,7 +15,7 @@ export default function AppLayout({ children }) {
     return (
         <div className="flex">
             <SideBar />
-            <main className="text-white">{children}</main>
+            <main className="text-white p-10 flex-1">{children}</main>
         </div>
     );
 }
