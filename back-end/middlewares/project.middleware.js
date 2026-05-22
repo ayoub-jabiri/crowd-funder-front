@@ -22,7 +22,7 @@ export const projectRules = [
         .custom((value, { req }) => {
             if (+value > +req.body.capital) {
                 throw new Error(
-                    "The project capital is cannot be greater than the capital"
+                    "The project initial investment cannot be greater than the capital"
                 );
             }
             return true;

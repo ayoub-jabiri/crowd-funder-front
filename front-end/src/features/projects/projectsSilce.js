@@ -12,8 +12,12 @@ const projectsSlice = createSlice({
             const { projects } = action.payload;
             currentState.ownerProjects = projects;
         },
+        createProject: (currentState, action) => {
+            const { newProject } = action.payload;
+            currentState.ownerProjects.push(newProject);
+        },
     },
 });
 
-export const { getProjects } = projectsSlice.actions;
+export const { getProjects, createProject } = projectsSlice.actions;
 export default projectsSlice.reducer;
