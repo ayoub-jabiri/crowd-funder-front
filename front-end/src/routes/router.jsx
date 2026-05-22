@@ -4,16 +4,9 @@ import DashboradPage from "../pages/DashboradPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import ProjectsPage from "../pages/ProjectsPage";
 
 export const router = createBrowserRouter([
-    {
-        path: "/dashboard",
-        element: (
-            <AppLayout>
-                <DashboradPage />
-            </AppLayout>
-        ),
-    },
     {
         path: "/login",
         element: <LoginPage />,
@@ -25,5 +18,21 @@ export const router = createBrowserRouter([
     {
         path: "*",
         element: <NotFoundPage />,
+    },
+    {
+        path: "/dashboard",
+        element: (
+            <AppLayout>
+                <DashboradPage />
+            </AppLayout>
+        ),
+    },
+    {
+        path: "/projects",
+        element: (
+            <AppLayout>
+                <ProjectsPage />
+            </AppLayout>
+        ),
     },
 ]);
