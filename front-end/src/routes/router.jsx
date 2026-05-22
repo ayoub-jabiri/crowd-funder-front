@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import ProjectsPage from "../pages/ProjectsPage";
+import ProjectsDetailsPage from "../pages/ProjectsDetailsPage";
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +33,14 @@ export const router = createBrowserRouter([
         element: (
             <AppLayout>
                 <ProjectsPage />
+            </AppLayout>
+        ),
+    },
+    {
+        path: "/projects/:id",
+        element: (
+            <AppLayout>
+                <ProjectsDetailsPage />
             </AppLayout>
         ),
     },

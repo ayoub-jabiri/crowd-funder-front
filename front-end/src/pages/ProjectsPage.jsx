@@ -14,8 +14,6 @@ export default function ProjectsPage() {
     const projects = useSelector((state) => state.projects.ownerProjects);
     const [showPopup, setShowPopup] = useState(false);
 
-    console.log(projects);
-
     useEffect(() => {
         const getProject = async () => {
             try {
@@ -41,7 +39,7 @@ export default function ProjectsPage() {
                     <h1 className="text-xl font-bold">Projects Page</h1>
                     <button
                         type="button"
-                        class="bg-white text-black border border-black font-medium leading-5 rounded-md text-sm px-4 py-2.5 flex items-center gap-2 cursor-pointer"
+                        className="bg-white text-black border border-black font-medium leading-5 rounded-md text-sm px-4 py-2.5 flex items-center gap-2 cursor-pointer"
                         onClick={() => setShowPopup(true)}
                     >
                         <RiAddLine />
