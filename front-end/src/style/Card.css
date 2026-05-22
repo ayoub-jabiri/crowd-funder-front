@@ -1,5 +1,4 @@
-.dashboard {
-    .card {
+.card {
         background: white;
         padding: 20px;
         border-radius: 12px;
@@ -8,8 +7,9 @@
         transition: 0.3s ease;
         cursor: pointer;
         border: 1px solid #e2ddd8;
-        margin-top: 20px;
-        border-top: 1px solid #2d6a4f;
+        margin-top: 50px;
+         margin-left: 13px;
+        
     }
     .card:hover {
         transform: translateY(-5px);
@@ -33,4 +33,4 @@
         font-size: 19px;
         color: #9e9893;
     }
-}
+
