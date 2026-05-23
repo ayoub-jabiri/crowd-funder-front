@@ -1,6 +1,7 @@
 // Internal Modules
 import {
     getOwnerProjects,
+    getOwnerProject,
     registerProject,
     updateProject,
     deleteProject,
@@ -10,6 +11,18 @@ import { errorResponse } from "../utils/error.response.js";
 export const getProjects = async (req, res) => {
     try {
         const projects = await getOwnerProjects(req.user._id);
+
+        res.json(projects);
+    } catch (error) {
+        console.error(error.message);
+        errorResponse(res, 500, "An internal error occured!");
+    }
+};
+
+export const getSingleProject = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const projects = await getOwnerProject(req.user._id, id);
 
         res.json(projects);
     } catch (error) {

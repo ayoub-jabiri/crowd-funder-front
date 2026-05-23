@@ -1,9 +1,13 @@
 import { RiBriefcaseLine, RiDashboardLine, RiUserFill } from "@remixicon/react";
 import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../features/auth/authSilce";
 
 export default function SideBar() {
+    const dispatch = useDispatch();
+
     function handleLogout() {
-        localStorage.removeItem("accessToken");
+        dispatch(userLogout());
     }
 
     return (
