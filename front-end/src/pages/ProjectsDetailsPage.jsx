@@ -2,16 +2,18 @@ import { RiArrowLeftLongLine } from "@remixicon/react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import {
     getSingleProject,
     handleOpenAndCloseProject,
+    deleteProject,
 } from "../features/projects/projectsSilce";
 
 export default function ProjectsDetailsPage() {
     const { VITE_API_URL } = import.meta.env;
     const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const token = useSelector((state) => state.userAuth.token);
     const currentProject = useSelector(
@@ -67,6 +69,21 @@ export default function ProjectsDetailsPage() {
         }
     }
 
+    async function handleDelete() {
+        try {
+            await axios.delete(`${VITE_API_URL}/projects/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            dispatch(deleteProject({ projectId: id }));
+            navigate("/projects");
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     if (!currentProject) {
         return <div>Loading...</div>;
     }
@@ -104,7 +121,10 @@ export default function ProjectsDetailsPage() {
                     <button className="bg-transparent text-white text-[13px] py-1 px-4 border rounded-md hover:bg-white hover:text-gray-800 cursor-pointer main-transition">
                         Edit
                     </button>
-                    <button className="bg-transparent text-white text-[13px] py-1 px-4 border rounded-md hover:bg-white hover:text-gray-800 cursor-pointer main-transition">
+                    <button
+                        className="bg-transparent text-white text-[13px] py-1 px-4 border rounded-md hover:bg-white hover:text-gray-800 cursor-pointer main-transition"
+                        onClick={handleDelete}
+                    >
                         Delete
                     </button>
                 </div>

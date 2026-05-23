@@ -27,6 +27,12 @@ const projectsSlice = createSlice({
 
             currentState.currentProject = project;
         },
+        deleteProject: (currentState, action) => {
+            const { projectId } = action.payload;
+            currentState.ownerProjects = currentState.ownerProjects.filter(
+                (project) => project._id !== projectId
+            );
+        },
     },
 });
 
@@ -35,5 +41,6 @@ export const {
     createProject,
     getSingleProject,
     handleOpenAndCloseProject,
+    deleteProject,
 } = projectsSlice.actions;
 export default projectsSlice.reducer;
