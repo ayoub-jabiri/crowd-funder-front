@@ -32,6 +32,24 @@ export default function ProjectsPage() {
         getProject();
     }, []);
 
+    let projectsList;
+
+    if (!projects) {
+        projectsList = (
+            <p className="col-span-12">
+                Something went wrong! Try reloading the page.
+            </p>
+        );
+    } else if (projects.length) {
+        projectsList = projects.map((project) => (
+            <ProjectCard key={project._id} project={project} />
+        ));
+    } else {
+        projectsList = (
+            <p className="col-span-12">There are no projects to show.</p>
+        );
+    }
+
     return (
         <>
             <div>
@@ -46,12 +64,7 @@ export default function ProjectsPage() {
                         <span>New Project</span>
                     </button>
                 </div>
-                <div className="grid grid-cols-12 gap-5">
-                    {projects &&
-                        projects.map((project) => (
-                            <ProjectCard key={project._id} project={project} />
-                        ))}
-                </div>
+                <div className="grid grid-cols-12 gap-5">{projectsList}</div>
             </div>
             {showPopup && <AddProjectModal setShowPopup={setShowPopup} />}
         </>

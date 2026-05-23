@@ -33,7 +33,7 @@ export const projectRules = [
     body("status")
         .isIn(["open", "closed"])
         .withMessage(
-            "The role is required and must be either 'open' or 'closed'"
+            "The project status is required and must be either 'open' or 'closed'"
         ),
 ];
 

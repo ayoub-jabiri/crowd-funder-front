@@ -4,11 +4,14 @@ export const registerProject = async (project) => await Project.create(project);
 
 export const getProject = async (query) => await Project.findOne(query);
 
-export const getOwnerProject = async (ownerId, projectId) =>
-    await Project.findOne({ ownerId, _id: projectId });
-
 export const getOwnerProjects = async (ownerId) =>
     await Project.find({ ownerId });
+
+export const getOwnerProject = async (ownerId, projectId) =>
+    await Project.findOne({ ownerId, _id: projectId }).populate(
+        "investorsIds",
+        "name"
+    );
 
 export const deleteProject = async (projectId) =>
     await Project.deleteOne(projectId);

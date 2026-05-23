@@ -95,6 +95,23 @@ export default function ProjectsDetailsPage() {
             <h2 className="text-base font-bold mt-6 mb-4">
                 Project Investors:
             </h2>
+            {currentProject.investorsIds.length ? (
+                <ul>
+                    {currentProject.investorsIds.map((investor, i) => (
+                        <li
+                            key={investor._id}
+                            className="text-sm text-gray-400"
+                        >
+                            <span className="text-white">{i + 1}.</span>
+                            <span className="ml-2 capitalize">
+                                {investor.name}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className="text-sm text-gray-400">No investors yet.</p>
+            )}
         </div>
     );
 }
