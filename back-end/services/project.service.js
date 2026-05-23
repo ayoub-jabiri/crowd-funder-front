@@ -17,7 +17,7 @@ export const deleteProject = async (projectId) =>
     await Project.deleteOne(projectId);
 
 export const updateProject = async (id, newData) => {
-    const project = await Project.findById(id);
+    const project = await Project.findById(id).populate("investorsIds", "name");
 
     project.title = newData.title;
     project.description = newData.description;

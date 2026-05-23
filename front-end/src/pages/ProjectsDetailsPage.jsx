@@ -3,7 +3,10 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router";
-import { getSingleProject } from "../features/projects/projectsSilce";
+import {
+    getSingleProject,
+    handleOpenAndCloseProject,
+} from "../features/projects/projectsSilce";
 
 export default function ProjectsDetailsPage() {
     const { VITE_API_URL } = import.meta.env;
@@ -36,6 +39,34 @@ export default function ProjectsDetailsPage() {
         getProject();
     }, []);
 
+    async function handleOpenAndClose(e) {
+        const newProjectData = { ...currentProject };
+
+        if (e.target.name === "open") {
+            newProjectData.status = "open";
+        } else if (e.target.name === "close") {
+            newProjectData.status = "closed";
+        }
+
+        try {
+            const response = await axios.put(
+                `${VITE_API_URL}/projects/${id}`,
+                newProjectData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            dispatch(
+                handleOpenAndCloseProject({ project: response.data.newProject })
+            );
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     if (!currentProject) {
         return <div>Loading...</div>;
     }
@@ -52,9 +83,24 @@ export default function ProjectsDetailsPage() {
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold">{currentProject.title}</h1>
                 <div className="flex gap-3">
-                    <button className="bg-transparent text-white text-[13px] py-1 px-4 border rounded-md hover:bg-white hover:text-gray-800 cursor-pointer main-transition">
-                        Close
-                    </button>
+                    {currentProject.status === "closed" && (
+                        <button
+                            className="bg-transparent text-white text-[13px] py-1 px-4 border rounded-md hover:bg-white hover:text-gray-800 cursor-pointer main-transition"
+                            name="open"
+                            onClick={handleOpenAndClose}
+                        >
+                            Open
+                        </button>
+                    )}
+                    {currentProject.status === "open" && (
+                        <button
+                            className="bg-transparent text-white text-[13px] py-1 px-4 border rounded-md hover:bg-white hover:text-gray-800 cursor-pointer main-transition"
+                            name="close"
+                            onClick={handleOpenAndClose}
+                        >
+                            Close
+                        </button>
+                    )}
                     <button className="bg-transparent text-white text-[13px] py-1 px-4 border rounded-md hover:bg-white hover:text-gray-800 cursor-pointer main-transition">
                         Edit
                     </button>

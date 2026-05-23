@@ -22,9 +22,18 @@ const projectsSlice = createSlice({
 
             currentState.currentProject = project;
         },
+        handleOpenAndCloseProject: (currentState, action) => {
+            const { project } = action.payload;
+
+            currentState.currentProject = project;
+        },
     },
 });
 
-export const { getProjects, createProject, getSingleProject } =
-    projectsSlice.actions;
+export const {
+    getProjects,
+    createProject,
+    getSingleProject,
+    handleOpenAndCloseProject,
+} = projectsSlice.actions;
 export default projectsSlice.reducer;
